@@ -54,3 +54,26 @@ exports.create = function(newImage) {
     });
   });
 };
+
+exports.delete = function(id) {
+  return new Promise((resolve, reject) =>{
+   
+    let sql = squel.delete()
+                    .from("images")
+                    .where('id = ?', id)
+                    .toString();
+
+    connection.query(sql, err => {
+      if(err) {
+        reject(err);
+      }else{
+        resolve();
+      }
+    });
+  });
+};
+
+
+
+
+

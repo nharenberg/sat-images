@@ -19,38 +19,7 @@ app.use(bodyParser.urlencoded({encoded: true}));
 app.use(express.static("public"));
 
 //ROUTES
-
-let Image = require("./models/image");
-
-app.get("/images", (req, res) => {
-
-  Image.getAll()
-    .then(images => {
-      res.send(images);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
-  });
-
-app.post("/images", (req, res) => {
-
-
-  // req.body
-  // {
-  //   title:
-  //   url:
-  //   description:
-  // }
-  Image.create(req.body)
-    .then(() => {
-      res.send();
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
-
-});
+app.use("/images", require("./routes/images"));
 
 //SERVER LISTEN
 app.listen(PORT, err => {
