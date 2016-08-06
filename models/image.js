@@ -46,6 +46,7 @@ exports.getOne = function(id) {
                     .toString();
 
     connection.query(sql, (err, images) => {
+      let image = images[0];
       if(err) {
         reject(err)
       }else if(!image){
