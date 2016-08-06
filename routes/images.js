@@ -37,5 +37,17 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+
+//PUT /images/:id
+router.put("/:id", (req, res) => {
+  Image.update(req.params.id, req.body)
+    .then(() => {
+      res.send();
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+})
+
 module.exports = router;
 

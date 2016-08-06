@@ -73,7 +73,24 @@ exports.delete = function(id) {
   });
 };
 
-
+exports.update = function(id, updateObj) {
+  return new Promise((resolve, reject) =>{
+    delete updateObj.id;
+    delete updateObj.createdAt;
+    let sql = squel.update()
+                    .table("images")
+                    .setFields(updateObj)
+                    .where("id = ?", id)
+                    .toString();
+    connection.query(sql, err => {
+      if(err) {
+        reject(err);
+      }else{
+        resolve();
+      }
+    });
+  });
+};
 
 
 
