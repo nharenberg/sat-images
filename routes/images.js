@@ -14,6 +14,17 @@ router.get("/", (req, res) => {
     });
   });
 
+router.get("/:id", (req, res) => {
+  Image.getOne(req.params.id)
+    .then(images => {
+      res.send(images);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+})
+
+
 router.post("/", (req, res) => {
 
   Image.create(req.body)
