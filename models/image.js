@@ -48,7 +48,7 @@ exports.getOne = function(id) {
     connection.query(sql, (err, images) => {
       if(err) {
         reject(err)
-      } else if(!image){
+      }else if(!image){
         reject({error: "Image not found."})
       }else {
         resolve(images);
